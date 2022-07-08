@@ -34,7 +34,6 @@ extern "C" {
 #include <inttypes.h>
 #include <stddef.h>
 #include <ucontext.h>
-#include <stdalign.h>
 
 #ifndef UNW_EMPTY_STRUCT
 #  define UNW_EMPTY_STRUCT uint8_t unused;
@@ -194,7 +193,7 @@ struct unw_sigcontext
 	uint64_t sp;
 	uint64_t pc;
 	uint64_t pstate;
-	alignas(16) uint8_t __reserved[(66 * 8)];
+	__attribute__((aligned(16))) uint8_t __reserved[(66 * 8)];
 };
 
 typedef struct
